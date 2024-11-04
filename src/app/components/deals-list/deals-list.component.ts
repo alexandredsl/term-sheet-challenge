@@ -4,7 +4,6 @@ import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { Table, TableModule } from 'primeng/table';
-import { ToastModule } from 'primeng/toast';
 import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 import { Deal, DealService } from '../../services/deal.service';
 import { CapRatePipe } from '../../shared/pipes/cap-rate.pipe';
@@ -25,7 +24,6 @@ import { DealFilterComponent } from '../deal-filter/deal-filter.component';
     TableModule,
     DialogModule,
     ButtonModule,
-    ToastModule,
   ],
   providers: [MessageService],
   templateUrl: './deals-list.component.html',
