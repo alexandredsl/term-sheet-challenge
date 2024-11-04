@@ -1,0 +1,110 @@
+
+<p-dialog
+  [(visible)]="showAddDealModal"
+  header="Add New Deal"
+  [modal]="true"
+  [closable]="true"
+  [style]="{ width: '400px' }"
+>
+  <app-add-deal
+    #addDeal
+    (dealAdded)="onDealAdded($event); showAddDealModal = false"
+  ></app-add-deal>
+</p-dialog>
+
+<p-table
+  #dealsTable
+  [paginator]="false"
+  [value]="$any(filteredDeals$ | async)"
+  [rows]="10"
+  [globalFilterFields]="['name', 'purchasePrice']"
+>
+  <ng-template pTemplate="caption">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h2 style="margin: 0;">Deals</h2>
+      <button
+        pButton
+        label="Add New Deal"
+        icon="pi pi-plus"
+        (click)="showAddDealModal = true; addDeal.dealForm.reset()"
+      ></button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="name">
+        Deal Name <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th pSortableColumn="purchasePrice">
+        Purchase Price <p-sortIcon field="purchasePrice"></p-sortIcon>
+      </th>
+      <th pSortableColumn="address">
+        Address <p-sortIcon field="address"></p-sortIcon>
+      </th>
+      <th pSortableColumn="noi">NOI <p-sortIcon field="noi"></p-sortIcon></th>
+      <th>
+        Cap Rate
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <p-columnFilter
+          #nameFilter
+          [showMenu]="false"
+          type="text"
+          field="name"
+          matchMode="contains"
+          placeholder="Filter by name"
+        ></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter
+          [showButtons]="false"
+          type="numeric"
+          field="purchasePrice"
+          [matchModeOptions]="[
+            { label: 'Greater Than or Equal To', value: 'gte' },
+            { label: 'Less Than or Equal To', value: 'lte' }
+          ]"
+          matchMode="gte"
+          placeholder="Filter by price"
+        ></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter
+          [showMenu]="false"
+          type="text"
+          field="address"
+          matchMode="contains"
+          placeholder="Filter by address"
+        ></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter
+          [showButtons]="false"
+          type="numeric"
+          field="noi"
+          [matchModeOptions]="[
+            { label: 'Greater Than or Equal To', value: 'gte' },
+            { label: 'Less Than or Equal To', value: 'lte' }
+          ]"
+          matchMode="gte"
+          placeholder="Filter by NOI"
+        ></p-columnFilter>
+      </th>
+      <th>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-deal>
+    <tr>
+      <td [innerHTML]="deal.name | highlight: $any(dealsTable.filters['name']).value"></td>
+      <td [innerHTML]="deal.purchasePrice | currency | highlight: $any(dealsTable.filters['purchasePrice']).value"></td>
+      <td [innerHTML]="deal.address | highlight: $any(dealsTable.filters['address']).value"></td>
+      <td [innerHTML]="deal.noi | currency | highlight: $any(dealsTable.filters['noi']).value"></td>
+      <td>{{ deal | capRate }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-toast></p-toast>

@@ -1,0 +1,43 @@
+<form id="dealForm" [formGroup]="dealForm" (ngSubmit)="addDeal()">
+  <div class="input-container">
+    <label>Deal Name:</label>
+    <input
+      placeholder="Fill the deal name"
+      class="p-inputtext-sm"
+      pInputText
+      pKeyFilter="alphanum"
+      formControlName="name"
+    />
+  </div>
+  <div class="input-container">
+    <label>Purchase Price:</label>
+    <p-inputNumber
+      placeholder="Fill the purchase price"
+      styleClass="p-inputtext-sm"
+      formControlName="purchasePrice"
+      mode="currency"
+      currency="USD"
+    />
+  </div>
+  <div class="input-container">
+    <label>Address:</label>
+    <input
+      placeholder="Fill the deal address"
+      class="p-inputtext-sm"
+      pInputText
+      pKeyFilter="alphanum"
+      formControlName="address"
+    />
+  </div>
+  <div class="input-container">
+    <label>NOI:</label>
+    <p-inputNumber
+      placeholder="Fill the NOI value"
+      styleClass="p-inputtext-sm"
+      formControlName="noi"
+      mode="currency"
+      currency="USD"
+    />
+  </div>
+  <button pButton type="submit" label="Add Deal"></button>
+</form>

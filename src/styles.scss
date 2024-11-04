@@ -1,0 +1,61 @@
+:root {
+    --primary-color: #f97317;
+    --primary-color-light: #fff7ef;
+    --primary-color-dark: #e66a12;
+    --primary-color-contrast: #ffffff;
+}
+
+#dealForm {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.p-button.p-button-primary,
+.p-button {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--primary-color-contrast);
+}
+
+.p-button.p-button-primary:hover {
+    background-color: var(--primary-color-light);
+    border-color: var(--primary-color-light);
+}
+
+.p-highlight {
+    background-color: var(--primary-color-light);
+    color: var(--primary-color);
+}
+
+.p-inputtext:focus,
+.p-dropdown:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(249, 115, 23, 0.25);
+}
+
+.p-inputtext:hover,
+.p-dropdown:hover {
+    border-color: var(--primary-color);
+
+}
+
+.p-toast .p-toast-message-success {
+    background-color: var(--primary-color);
+    color: var(--primary-color-contrast);
+}
+
+.p-datatable .p-sortable-column.p-highlight .p-sortable-column-icon {
+    color: var(--primary-color);
+}
+
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
